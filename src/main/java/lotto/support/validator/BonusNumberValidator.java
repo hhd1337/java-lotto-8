@@ -1,11 +1,11 @@
 package lotto.support.validator;
 
+import static lotto.domain.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
+
 import java.util.List;
 
 public class BonusNumberValidator {
-
-    private static final int MIN = 1;
-    private static final int MAX = 45;
 
     public void validate(int bonus, List<Integer> winningNumbers) {
         validateRange(bonus);
@@ -13,7 +13,7 @@ public class BonusNumberValidator {
     }
 
     private void validateRange(int bonus) {
-        if (bonus < MIN || bonus > MAX) {
+        if (bonus < LOTTO_MIN_NUMBER || bonus > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

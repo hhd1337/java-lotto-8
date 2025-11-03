@@ -1,8 +1,8 @@
 package lotto.support.validator;
 
-public class PurchaseAmountValidator {
+import static lotto.domain.LottoConstants.LOTTO_PRICE;
 
-    private static final int UNIT = 1000;
+public class PurchaseAmountValidator {
 
     public void validate(int amount) {
         validatePositive(amount);
@@ -16,7 +16,7 @@ public class PurchaseAmountValidator {
     }
 
     private void validateMultipleOfUnit(int amount) {
-        if (amount % UNIT != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
         }
     }
