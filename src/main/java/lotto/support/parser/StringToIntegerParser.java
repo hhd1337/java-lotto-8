@@ -1,4 +1,4 @@
-package lotto.support;
+package lotto.support.parser;
 
 public class StringToIntegerParser {
     public int parseToInt(String input) {

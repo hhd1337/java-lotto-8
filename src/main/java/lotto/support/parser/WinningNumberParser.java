@@ -1,4 +1,4 @@
-package lotto.support;
+package lotto.support.parser;
 
 import java.util.ArrayList;
 import java.util.List;
