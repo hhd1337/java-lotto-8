@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumberParser {
-
     private static final String SEPARATOR = ",";
+    StringToIntegerParser stringToIntegerparser = new StringToIntegerParser();
 
     public List<Integer> parse(String input) {
         validateBlankAndNull(input);
@@ -14,17 +14,9 @@ public class WinningNumberParser {
         String[] parts = input.split(SEPARATOR);
         List<Integer> numbers = new ArrayList<>();
         for (String part : parts) {
-            numbers.add(parseToInt(part));
+            numbers.add(stringToIntegerparser.parseToInt(part));
         }
         return numbers;
-    }
-
-    private int parseToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다. : " + input);
-        }
     }
 
     private void validateBlankAndNull(String input) {
