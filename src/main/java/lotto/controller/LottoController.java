@@ -1,6 +1,11 @@
 package lotto.controller;
 
+import static lotto.domain.LottoConstants.FIFTH_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.FIRST_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.FOURTH_PRIZE_MONEY;
 import static lotto.domain.LottoConstants.LOTTO_PRICE;
+import static lotto.domain.LottoConstants.SECOND_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.THIRD_PRIZE_MONEY;
 
 import java.util.List;
 import java.util.Map;
@@ -118,11 +123,11 @@ public class LottoController {
         outputView.printWinResultHeader();
         Map<LottoRank, Integer> winCounts = result.getWinCounts();
 
-        printLineForRank("3개 일치", 5_000, winCounts.get(LottoRank.FIFTH));
-        printLineForRank("4개 일치", 50_000, winCounts.get(LottoRank.FOURTH));
-        printLineForRank("5개 일치", 1_500_000, winCounts.get(LottoRank.THIRD));
+        printLineForRank("3개 일치", FIFTH_PRIZE_MONEY, winCounts.get(LottoRank.FIFTH));
+        printLineForRank("4개 일치", FOURTH_PRIZE_MONEY, winCounts.get(LottoRank.FOURTH));
+        printLineForRank("5개 일치", THIRD_PRIZE_MONEY, winCounts.get(LottoRank.THIRD));
         printLineForRankWithBonus(winCounts.get(LottoRank.SECOND));
-        printLineForRank("6개 일치", 2_000_000_000, winCounts.get(LottoRank.FIRST));
+        printLineForRank("6개 일치", FIRST_PRIZE_MONEY, winCounts.get(LottoRank.FIRST));
 
         outputView.printProfitRate(result.getProfitRate());
     }
@@ -133,7 +138,7 @@ public class LottoController {
     }
 
     private void printLineForRankWithBonus(int count) {
-        String line = String.format("5개 일치, 보너스 볼 일치 (%,d원) - %d개", 30_000_000, count);
+        String line = String.format("5개 일치, 보너스 볼 일치 (%,d원) - %d개", SECOND_PRIZE_MONEY, count);
         outputView.printWinResultLine(line);
     }
 }

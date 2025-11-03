@@ -1,12 +1,18 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.FIFTH_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.FIRST_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.FOURTH_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.SECOND_PRIZE_MONEY;
+import static lotto.domain.LottoConstants.THIRD_PRIZE_MONEY;
+
 public enum LottoRank {
 
-    FIRST(6, false, 2_000_000_000),     // 1등 : 6개 일치
-    SECOND(5, true, 30_000_000),        // 2등 : 5개, 보너스 일치
-    THIRD(5, false, 1_500_000),         // 3등 : 5개
-    FOURTH(4, false, 50_000),           // 4등 : 4개
-    FIFTH(3, false, 5_000),             // 5등 : 3개
+    FIRST(6, false, FIRST_PRIZE_MONEY),         // 1등 : 6개 일치
+    SECOND(5, true, SECOND_PRIZE_MONEY),        // 2등 : 5개, 보너스 일치
+    THIRD(5, false, THIRD_PRIZE_MONEY),         // 3등 : 5개
+    FOURTH(4, false, FOURTH_PRIZE_MONEY),       // 4등 : 4개
+    FIFTH(3, false, FIFTH_PRIZE_MONEY),         // 5등 : 3개
     MISS(0, false, 0);
 
     private final int matchCount;
