@@ -1,14 +1,14 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_NUMBER_COUNT;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class WinningLotto {
-
-    private static final int NUMBERS_COUNT = 6;
-    private static final int MIN = 1;
-    private static final int MAX = 45;
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
@@ -34,14 +34,14 @@ public class WinningLotto {
     }
 
     private void validateSize(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != NUMBERS_COUNT) {
+        if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨번호는 정확히 6개여야 합니다.");
         }
     }
 
     private void validateRange(List<Integer> winningNumbers) {
         for (int number : winningNumbers) {
-            if (number < MIN || number > MAX) {
+            if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
@@ -55,7 +55,7 @@ public class WinningLotto {
     }
 
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (bonusNumber < MIN || bonusNumber > MAX) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         if (winningNumbers.contains(bonusNumber)) {

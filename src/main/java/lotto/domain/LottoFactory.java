@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.domain.LottoConstants.LOTTO_NUMBER_COUNT;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoFactory {
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
 
     public List<Lotto> generateMany(int count) {
         validateCount(count);
