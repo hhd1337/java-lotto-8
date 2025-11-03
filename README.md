@@ -38,19 +38,63 @@
   - 숫자가 아닐 경우 예외처리
   - 전부 6개가 아님, 중복숫자, 1~45 밖일 경우 예외처리
 - 보너스번호
-  - 정수 1개 아님, 1~45범위 아님, 당첨번호와 중복일 경우 예외처
+  - 정수 1개 아님, 1~45범위 아님, 당첨번호와 중복일 경우 예외처리
 ### 8) 단위 테스트 작성
-- 각 클래스별 핵심 기능과 예외 케이스에 대한 단위 테스트 작성
+- 각 로직이 존재하는 클래스별 핵심 기능과 예외 케이스에 대한 단위 테스트 작성
 
 <br>
 
-## 2. 아키텍처 개요 (책임) 
-- `InputView / OutputView` : 콘솔 입출력
-- `WinningNumberParser` : 쉼표로 구분된 입력을 정수 리스트로 파싱
-- `InputValidator` : 입력 유효성 검증 (형식, 범위 등)
-- `LottoGenerator` : 로또 번호(1 ~ 45 범위의 랜덤 정수6개) 생성
-- `Lotto` : 로또 티켓 하나 (숫자 6개 한 묶음)
-- `LottoRankPolicy` : 등수별 일치하는 번호 개수, 보너스 필요 여부(2~3등), 상금 금액 저장하는 ENUM
-- `LottoResultCalculator` : 등수별 당첨개수 집계, 총 상금 계산, 수익률 계산
-- `WinningLottoNumbers` : 당첨 번호 6개 + 보너스 번호 1개 묶음
+## 2. 아키텍처 개요 (클래스별 책임) 
+### controller
 - `LottoController` : 전체 실행 과정을 관리하는 오케스트레이터 (로또 구매, 당첨번호 입력, 당첨 통계 출력)
+### service
+- `LottoResultCalculatingService` : 당첨 결과 계산로직을 담은 서비스 레이어
+### view
+- `InputView / OutputView` : 콘솔 입출력 담당
+### domain
+- `Lotto` : 로또 티켓 하나 (숫자 6개 한 묶음)
+- `WinningLotto` : 당첨 번호 6개 + 보너스 번호 1개 묶음
+- `LottoFactory` : 로또 번호 6개 랜덤 생성하여 오름차순 정렬된 티켓 발행
+- `LottoRank` : 등수별 정책 ENUM (일치 개수, 보너스 필요 여부, 상금 금액)
+- `LottoConstants` : 상수 정의 (상금 금액, 로또 가격, 번호 범위, 등수별 상금)
+### parse
+- `StringToIntegerParser` : 문자열을 정수로 변환
+- `WinningNumberParser` : 쉼표로 구분된 입력을 정수 리스트로 파싱
+### validate
+- `PurchaseAmountValidator` : 구입금액 입력의 유효성 검증
+- `LottoNumbersValidator` : 로또번호 6개의 유효성 검증
+- `BonusNumberValidator` : 보너스 번호의 유효성 검증
+
+<br>
+
+## 3. 패키지 구조
+```
+src
+└── main
+    └── java
+        └── lotto
+            ├── controller
+            │   └── LottoController.java
+            ├── domain
+            │   ├── Lotto.java
+            │   ├── LottoFactory.java
+            │   ├── LottoRank.java
+            │   ├── WinningLotto.java
+            │   └── LottoConstants.java
+            ├── dto
+            │   └── LottoResult.java
+            ├── service
+            │   └── LottoResultCalculatingService.java
+            ├── support
+            │   ├── parser
+            │   │   ├── StringToIntegerParser.java
+            │   │   └── WinningNumberParser.java
+            │   └── validator
+            │       ├── BonusNumberValidator.java
+            │       ├── LottoNumbersValidator.java
+            │       └── PurchaseAmountValidator.java
+            └── view
+                ├── InputView.java
+                └── OutputView.java
+
+```
