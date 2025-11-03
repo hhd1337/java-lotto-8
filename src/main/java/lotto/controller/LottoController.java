@@ -13,8 +13,8 @@ import lotto.service.LottoResultCalculatingService;
 import lotto.support.StringToIntegerParser;
 import lotto.support.WinningNumberParser;
 import lotto.support.validator.BonusNumberValidator;
+import lotto.support.validator.LottoNumbersValidator;
 import lotto.support.validator.PurchaseAmountValidator;
-import lotto.support.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,7 +25,7 @@ public class LottoController {
     private final WinningNumberParser winningNumberParser;
     private final PurchaseAmountValidator purchaseAmountValidator;
     private final BonusNumberValidator bonusNumberValidator;
-    private final WinningNumbersValidator winningNumbersValidator;
+    private final LottoNumbersValidator lottoNumbersValidator;
     private final LottoFactory lottoFactory;
     private final LottoResultCalculatingService lottoResultCalculatingService;
     private final StringToIntegerParser stringToIntegerParser;
@@ -36,7 +36,7 @@ public class LottoController {
         this.winningNumberParser = new WinningNumberParser();
         this.purchaseAmountValidator = new PurchaseAmountValidator();
         this.bonusNumberValidator = new BonusNumberValidator();
-        this.winningNumbersValidator = new WinningNumbersValidator();
+        this.lottoNumbersValidator = new LottoNumbersValidator();
         this.lottoFactory = new LottoFactory();
         this.lottoResultCalculatingService = new LottoResultCalculatingService();
         this.stringToIntegerParser = new StringToIntegerParser();
@@ -78,7 +78,7 @@ public class LottoController {
                 outputView.printWinningNumbersNotice();
                 String raw = inputView.readWinningNumbers();
                 List<Integer> numbers = winningNumberParser.parse(raw);
-                winningNumbersValidator.validate(numbers);
+                lottoNumbersValidator.validate(numbers);
                 return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

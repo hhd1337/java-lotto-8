@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumbersValidator {
+public class LottoNumbersValidator {
 
     private static final int NUMBERS_COUNT = 6;
     private static final int MIN = 1;
